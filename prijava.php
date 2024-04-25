@@ -172,7 +172,150 @@
 </footer>
 
 
+<script>
+        var mymap = L.map('map',{
+            center:[44.809667037964005, 20.475276810593915],
+            zoom:7,
+            gestureHandling: true,
+            gestureHandlingOptions: {
+                duration: 2000 //5 secs
+            }
+        });
 
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(mymap);
+
+        var latInput = document.querySelector("#latitude");
+        var lngInput = document.querySelector("#longitude");
+        var addressSpan = document.querySelector("#address");
+
+        var marker = L.marker(mymap.getCenter(), {
+            draggable: true
+        }).addTo(mymap);
+
+
+
+
+        // Dobijanje lokacije pomeranjem markera
+        marker.on('moveend', function(e) {
+            var markerPosition = marker.getLatLng();
+            var lat = markerPosition.lat.toFixed(6);
+            var lng = markerPosition.lng.toFixed(6);
+            latInput.value = lat;
+            lngInput.value = lng;
+
+            // Koristimo Nominatim API za dobijanje adrese na osnovu koordinata
+            var url = 'https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lng + '&format=json';
+            fetch(url)
+            
+                .then(response => response.json())
+                .then(data => {
+                    var address = data.display_name;
+                    
+                    addressSpan.textContent = address;
+
+                    console.log( 'ovo je okrg ' + data.address.county)
+                    console.log( 'ovo je tipa cebtralana srbija, vojdovina itd... ' + data.address.state)
+                    console.log( 'ovo je grad moze da bude i da ga nema  ' + data.address.city)
+                    console.log( 'adresa ako je ima  ' + data.address.road)
+                    console.log( 'ovo je broj ako ga ima misli se an ulični broj  ' + data.address.house_number)
+
+                    
+
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.error('Error fetching address:', error);
+                });
+        });
+
+        
+
+        // Funkcija za postavljanje pina na mapu na određene koordinate
+        function setMapMarker(latitude, longitude) {
+            var newLatLng = new L.LatLng(latitude, longitude);
+            marker.setLatLng(newLatLng);
+            mymap.setView(newLatLng);
+        }
+
+        // Ova funkcija će biti pozvana samo prilikom prvog poseta
+        function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            setMapMarker(latitude, longitude);
+            latInput.value = latitude.toFixed(6);
+            lngInput.value = longitude.toFixed(6);
+            getAddressFromClick(latitude, longitude); // Dobijamo adresu na osnovu dobijenih koordinata
+            mymap.setView([latitude, longitude], 15);
+        });
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+}
+        
+
+        // Pozivamo funkciju za dobijanje geolokacije samo prilikom prvog poseta
+        if (!localStorage.getItem("visited")) {
+            getLocation();
+            localStorage.setItem("visited", true);
+        }
+
+        // Funkcija za slanje podataka forme bez osvežavanja stranice
+        function submitForm() {
+            var latitude = latInput.value;
+            var longitude = lngInput.value;
+
+            // Kreiranje AJAX zahteva
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "upis_u_bazu.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Obrada odgovora
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        // Prikaz poruke o uspešnom upisu je uklonjen
+                        setMapMarker(latitude, longitude); // Ponovo postavljamo marker na mapi
+                    } else {
+                        alert(response.message); // Prikaz poruke o grešci
+                    }
+                }
+            };
+            // Slanje podataka
+            xhr.send("latitude=" + latitude + "&longitude=" + longitude);
+
+            return false; // Da bismo sprečili podnošenje forme
+        }
+
+        // Funkcija za dobijanje adrese na osnovu koordinata klika na mapu
+        function getAddressFromClick(lat, lng) {
+            // Koristimo Nominatim API za dobijanje adrese na osnovu koordinata
+            var url = 'https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lng + '&format=json';
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var address = data.display_name;
+                    addressSpan.textContent = address;
+                })
+                .catch(error => {
+                    console.error('Error fetching address:', error);
+                });
+        }
+
+        // Dodajemo event listener na mapu koji će pozivati funkciju za dobijanje adrese
+        mymap.on('click', function(e) {
+            var clickedPosition = e.latlng;
+            var lat = clickedPosition.lat.toFixed(6);
+            var lng = clickedPosition.lng.toFixed(6);
+            setMapMarker(lat, lng); // Postavljamo marker na kliknutu poziciju
+            getAddressFromClick(lat, lng); // Dobijamo adresu kliknute pozicije
+        });
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
   </body>

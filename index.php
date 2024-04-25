@@ -326,7 +326,20 @@
 
 
     <script>
+var map = L.map('map',{
+  center:[43.823556124161556, 20.862692362420842],
+  zoom:7,
+  gestureHandling: true,
+  gestureHandlingOptions: {
+        duration: 2000 //5 secs
+    }
+});
 
+
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
       
 
     </script>

@@ -22,11 +22,6 @@
     <link href="asset/style.css" rel="stylesheet">
     <link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
 <script src="//unpkg.com/leaflet-gesture-handling"></script>
-<style>
-  #map{
-    height:750px;
-  }
-</style>
   </head>
   <body>
     <div class="insade-frea-img-map-report">
@@ -170,7 +165,9 @@
     <div class="footer-bootom text-center">ⓒ ekoh2o 2024</div>
   </div>
 </footer>
+<?php
 
+?>
 
 <script>
         var mymap = L.map('map',{

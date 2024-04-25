@@ -323,7 +323,9 @@
   </div>
   
 </footer>
+<?php
 
+?>
 
     <script>
 var map = L.map('map',{

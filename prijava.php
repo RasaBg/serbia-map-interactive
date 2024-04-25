@@ -26,7 +26,21 @@
   <body>
     <div class="insade-frea-img-map-report">
       <div class="container">
-        <nav></nav>
+           <nav>
+      <div class="logo-border"></div>
+      <div class="logo"><img src="img/logo.png" alt=""></div>
+        <ul class="mob-mar">
+          <li>
+              <a href="/">naslovna</a>
+          </li>
+          <li>
+              <a href="https://blog.parentstime.rs/">blog</a>
+          </li>
+          <li>
+              <a href="/contact">kontakt</a>
+          </li>
+      </ul>
+    </nav>
         <div class="insade-frea-wrapper">
           <div class="insade-wrapper">
             <h1>Prijavite divlju deponiju</h1>

@@ -37,9 +37,8 @@ nav{
 .logo{
     position: absolute;
     left: 50%;
-    top: 8px;
-    transform: translateX(-50%);
-    z-index: 10;
+    top: 10px;
+    transform: translateX(-50%);    
     width: 170px;
     height: 170px;
     border-radius: 50%;  
@@ -67,16 +66,15 @@ nav{
 .logo-border{
     position: absolute;
     left: 50%;
-    top: 3px;
-    transform: translateX(-50%);
-    z-index: 10;
+    top: 6px;
+    transform: translateX(-50%);    
     width: 179px;
     height: 179px;
-    background: rgb(102,187,106);
+    
 background: linear-gradient(0deg, rgba(102,187,106,1) 0%, rgba(102,187,106,1) 54%, rgba(255,255,255,1) 54%, rgba(255,255,255,1) 100%);
-    z-index: 1;  
+     
     border-radius: 0 0 10rem 10rem ;
-    z-index: 1;
+        z-index: 1;
 }
 
 nav ul li {
@@ -92,6 +90,203 @@ nav ul li a {
     text-transform: uppercase;
 }
 
+
+/* nova navigacija */
+
+header{
+width: 100%;	
+position: absolute;
+top: 0;
+z-index: 5000;
+}
+
+
+
+.menu2{
+display: none;	
+}
+
+
+
+.navigation{ 
+width: 100%;
+}
+
+
+ul.test{
+    background-color: #fff;
+    width: 100%;
+    padding: 30px 0;
+    border-bottom: 5px solid #66bb6a;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    position: relative;
+}
+
+ul.test img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.navigation:after{
+display: block;
+content: ""	;
+clear: both;
+}
+
+
+
+.logo-sin{
+float: left;
+
+}
+
+.logo-sin img{
+width: 80px;
+height: 80px;
+}
+
+
+.navigation ul {
+list-style: none;
+float: right;
+}
+
+.navigation ul li{
+display: inline-block;	
+padding: 0 10px;
+transition: opacity 0.3s;
+}
+
+
+.navigation ul li a{
+font-weight: 400;
+font-size: 18px;
+color:#000;
+line-height: 28px;
+text-decoration: none;
+text-transform: uppercase;
+transition: 0.3s;
+}
+
+.navigation ul li a:hover{
+text-decoration: none;	
+}
+
+.navigation ul li a:hover{
+opacity: 0.5;	
+color: red;
+}
+
+
+@media screen and (max-width: 768px){
+
+.logo-sin{
+	display: none;
+}	
+
+.menu2{
+display: block;
+position: fixed;
+width: 40px;
+height: 40px;
+top: 3px;
+right: 30px;
+z-index: 999;
+cursor: pointer;
+background-color: #5991e6;
+border-radius: 50%;
+border: 2px solid #fff;
+box-sizing: content-box;
+}
+
+
+
+
+.bar, .bar::before, .bar::after{
+position: absolute;
+background-color: #fff;
+width: 100%;
+height: 3px;
+content: "";
+top: 50%;
+left: 0;
+}
+
+.bar{
+margin-top: -1px;	
+width: 20px;
+left: 10px
+}
+
+.bar::before{
+top:-7px;	
+}
+
+.bar::after{
+top:7px;	
+}
+
+.bar::before, .bar::after{
+transform:rotate(0deg);
+transition: 0.3s;
+}
+
+.active .bar{
+background-color: transparent;	
+}
+
+
+.active .bar::before{
+transform: rotate(45deg);	
+transition: 0.3s;
+}
+
+.active .bar::after{
+transform: rotate(-45deg);	
+transition: 0.3s;
+}
+
+.active .bar::before,
+.active .bar::after{
+top: 0;
+}
+
+.navigation{
+height: 100%;
+background-color:#5991e6;	
+position: fixed;
+transform: translateX(-800px);
+z-index: 998;
+line-height: 50px;
+font-size: 25px;
+transition:transform 0.5s cubic-bezier(0.56, 0.1, 0.34, 0.91);
+display: flex; /* Postavljamo display na flex */
+    justify-content: center; /* Centriramo sadržaj po horizontali */
+    align-items: center; /* Centriramo sadržaj po vertikali */
+}
+
+.menu-open .navigation{
+transform: translate(0);	
+}
+
+
+.navigation ul{
+width: 100%;
+text-align: center;
+}
+
+.navigation ul li{
+display: block;
+padding: 10px;
+}
+
+}
 
 /* navigation end*/
 
@@ -109,14 +304,14 @@ nav ul li a {
 
 
 .insade-frea-wrapper{
-    height: 550px;    
+    height: 800px;    
     position: relative;
     z-index: 1;
 }
 
 .insade-wrapper {
     position: absolute;
-    top: 50%;
+    top: 48%;
     transform: translateY(-50%);
     padding: 25px 42px 25px 42px;
     border-top-right-radius: 20px;

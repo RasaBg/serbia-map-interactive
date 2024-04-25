@@ -23,25 +23,41 @@
 <script src="//unpkg.com/leaflet-gesture-handling"></script>
   </head>
   <body>
+
+          <header>
+    <div class="menu2">
+      <span class="bar"></span>
+    </div>
+    <div class="navigation">
+      
+        <div class="container">          
+      
+          <ul class="test" >
+          <div class="logo-border"></div>
+          <a href="">
+          <div class="logo"><img src="img/logo.png" alt=""></div>
+          </a>
+            <li>
+              <a href="">naslovna</a>
+            </li>
+            <li>
+              <a href="">blog</a>
+            </li>
+            <li>
+              <a href="">kontakt</a>
+            </li>
+            <li>
+              <a href="">prijavi divlju deponiju</a>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
     <div class="insade-frea-img">
       <div class="container">
-    
-     <nav>
-      <div class="logo-border"></div>
-      <div class="logo"><img src="img/logo.png" alt=""></div>
-        <ul class="mob-mar">
-          <li>
-              <a href="/">naslovna</a>
-          </li>
-          <li>
-              <a href="https://blog.parentstime.rs/">blog</a>
-          </li>
-          <li>
-              <a href="/contact">kontakt</a>
-          </li>
-      </ul>
-    </nav>
-
         <div class="insade-frea-wrapper">
           <div class="insade-wrapper">
             <h1>MAPA <br> Divljih <br> deponija </h1>
@@ -323,9 +339,7 @@
   </div>
   
 </footer>
-<?php
 
-?>
 
     <script>
 var map = L.map('map',{
@@ -346,6 +360,7 @@ var map = L.map('map',{
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="asset/custom.js" ></script>
   </body>
   </body>
 </html>

@@ -31,7 +31,7 @@
       <div class="logo"><img src="img/logo.png" alt=""></div>
         <ul class="mob-mar">
           <li>
-              <a href="/">naslovna</a>
+              <a href="/">naslovnaa</a>
           </li>
           <li>
               <a href="https://blog.parentstime.rs/">blog</a>
